@@ -1,8 +1,9 @@
-# Regras do Projeto - Monorepo Nx (React + NestJS)
+# Regras do Projeto - React + NestJS
 
 ## 🏗️ Arquitetura e Design Patterns
 
 ### SOLID Principles
+
 - **S**ingle Responsibility: Cada classe/função deve ter uma única responsabilidade
 - **O**pen/Closed: Aberto para extensão, fechado para modificação
 - **L**iskov Substitution: Subtipos devem ser substituíveis por seus tipos base
@@ -10,12 +11,14 @@
 - **D**ependency Inversion: Depender de abstrações, não de implementações concretas
 
 ### Clean Architecture
+
 - **Entities**: Regras de negócio centrais (domínio)
 - **Use Cases**: Casos de uso da aplicação (aplicação)
 - **Interface Adapters**: Controllers, Presenters, Gateways (infraestrutura)
 - **Frameworks & Drivers**: Frameworks, DB, UI (externo)
 
 ### Domain Driven Design (DDD)
+
 - **Entities**: Objetos com identidade única
 - **Value Objects**: Objetos imutáveis sem identidade
 - **Aggregates**: Clusters de entidades relacionadas
@@ -26,6 +29,7 @@
 ## 🔐 Fluxo de Autenticação
 
 ### Cadastro de Novo Usuário
+
 1. Cliente envia nome e email
 2. Sistema gera código de login único
 3. Sistema envia código por email
@@ -33,6 +37,7 @@
 5. Cliente é logado automaticamente
 
 ### Login de Usuário Existente
+
 1. Cliente clica em "Login"
 2. Cliente digita email
 3. Sistema gera novo código de login
@@ -41,6 +46,7 @@
 6. Cliente é logado na plataforma
 
 ### Segurança
+
 - Códigos de login expiram em 10 minutos
 - Máximo 3 tentativas por código
 - Rate limiting: 3 tentativas por email por hora
@@ -49,8 +55,9 @@
 ## 📁 Estrutura de Pastas
 
 ### Backend (NestJS)
+
 ```
-apps/backend/
+backend/
 ├── src/
 │   ├── domain/           # Entidades, Value Objects, Interfaces
 │   │   ├── entities/
@@ -72,8 +79,9 @@ apps/backend/
 ```
 
 ### Frontend (React)
+
 ```
-apps/frontend/
+frontend/
 ├── src/
 │   ├── domain/          # Entidades, Interfaces
 │   ├── application/     # Use Cases, Services
@@ -84,6 +92,7 @@ apps/frontend/
 ## 🔧 Padrões de Código
 
 ### Nomenclatura
+
 - **Classes**: PascalCase (UserService, AuthController)
 - **Interfaces**: PascalCase com prefixo I (IUserRepository)
 - **Funções/Métodos**: camelCase (createUser, validateEmail)
@@ -92,6 +101,7 @@ apps/frontend/
 - **Arquivos**: kebab-case (user-service.ts, auth-controller.ts)
 
 ### Estrutura de Classes
+
 ```typescript
 // ✅ Bom exemplo
 export class UserService {
@@ -107,6 +117,7 @@ export class UserService {
 ```
 
 ### Injeção de Dependência
+
 - Sempre usar interfaces para dependências
 - Injetar dependências via constructor
 - Evitar new() dentro de classes de serviço
@@ -114,6 +125,7 @@ export class UserService {
 ## 🌐 RESTful APIs
 
 ### Padrões de Endpoints
+
 - **POST** /auth/register - Cadastrar novo usuário
 - **POST** /auth/login - Solicitar código de login
 - **POST** /auth/verify-code - Verificar código de login
@@ -121,6 +133,7 @@ export class UserService {
 - **POST** /auth/logout - Logout do usuário
 
 ### Respostas Padrão
+
 ```typescript
 // ✅ Sucesso
 {
@@ -141,6 +154,7 @@ export class UserService {
 ```
 
 ### Status Codes
+
 - **200**: Sucesso
 - **201**: Criado com sucesso
 - **400**: Bad Request (validação)
@@ -154,11 +168,13 @@ export class UserService {
 ## 🧪 Testes
 
 ### Estrutura de Testes
+
 - **Unit Tests**: Testar lógica isolada
 - **Integration Tests**: Testar integração entre camadas
 - **E2E Tests**: Testar fluxos completos
 
 ### Padrões de Teste
+
 ```typescript
 describe('UserService', () => {
   let service: UserService;
@@ -186,6 +202,7 @@ describe('UserService', () => {
 ## 🔒 Segurança
 
 ### Autenticação/Autorização
+
 - Códigos de login únicos e temporários
 - Rate limiting por email/IP
 - Validação de entrada
@@ -193,6 +210,7 @@ describe('UserService', () => {
 - Logs de segurança
 
 ### Validação
+
 ```typescript
 // ✅ Usar class-validator
 export class CreateUserDto {
@@ -225,11 +243,13 @@ export class VerifyCodeDto {
 ## 📝 Documentação
 
 ### Comentários
+
 - Documentar interfaces públicas
 - Explicar lógica complexa
 - Usar JSDoc para métodos públicos
 
 ### README
+
 - Setup do projeto
 - Estrutura de pastas
 - Padrões de desenvolvimento
@@ -238,12 +258,14 @@ export class VerifyCodeDto {
 ## 🚀 Performance
 
 ### Backend
+
 - Paginação em listagens
 - Cache quando apropriado
 - Lazy loading
 - Otimização de queries
 
 ### Frontend
+
 - Lazy loading de componentes
 - Memoização (useMemo, useCallback)
 - Code splitting
@@ -252,11 +274,13 @@ export class VerifyCodeDto {
 ## 🔄 Versionamento
 
 ### Commits
+
 - Usar Conventional Commits
 - Exemplo: `feat(auth): add user registration endpoint`
 - Tipos: feat, fix, docs, style, refactor, test, chore
 
 ### Branches
+
 - `main`: Código em produção
 - `develop`: Código em desenvolvimento
 - `feature/`: Novas funcionalidades
@@ -266,6 +290,7 @@ export class VerifyCodeDto {
 ## 📦 Dependências
 
 ### Backend
+
 - NestJS (framework)
 - TypeORM (ORM)
 - class-validator (validação)
@@ -274,6 +299,7 @@ export class VerifyCodeDto {
 - rate-limiter-flexible (rate limiting)
 
 ### Frontend
+
 - React (framework)
 - Material-UI (UI)
 - React Router (roteamento)
@@ -303,13 +329,15 @@ export class VerifyCodeDto {
 
 ## 📝 Atualização do Project Status
 
-### Regras para Atualização do PROJECT_STATUS.md:
+### Regras para Atualização do PROJECT_STATUS.md
+
 - **A cada commit significativo:** Atualizar a seção "Histórico de Commits"
 - **Ao completar tarefas:** Marcar checkboxes no checklist
 - **Ao encontrar problemas:** Documentar na seção "Problemas Conhecidos"
 - **Ao tomar decisões importantes:** Registrar em "Decisões Técnicas"
 
-### Formato do Histórico de Commits:
+### Formato do Histórico de Commits
+
 ```markdown
 ### Commit: [hash do commit]
 **Data:** [data do commit]
@@ -328,13 +356,15 @@ export class VerifyCodeDto {
 
 ## 🔧 Configuração Inicial do Projeto
 
-### Regras para Configuração Inicial:
+### Regras para Configuração Inicial
+
 - **Git Setup:** Sempre configurar Git antes de qualquer implementação
 - **Documentação:** Criar SETUP.md com instruções de configuração
 - **Ambiente:** Configurar variáveis de ambiente antes do desenvolvimento
 - **Dependências:** Instalar dependências base antes de criar aplicações
 
-### Sequência de Configuração Inicial:
+### Sequência de Configuração Inicial
+
 1. **Git Repository Setup**
    - Inicializar repositório Git
    - Conectar ao repositório remoto
@@ -357,27 +387,27 @@ export class VerifyCodeDto {
    - Atualizar PROJECT_STATUS.md
    - Documentar configurações realizadas
    - Registrar decisões técnicas
-   - Preparar próximos passos 
+   - Preparar próximos passos
 
 ## 📦 Git Ignore
 
 - Sempre manter um arquivo `.gitignore` atualizado na raiz do projeto.
 - O `.gitignore` deve cobrir:
-  - node_modules, dist, build, .nx, .env, .env.*, !.env.example
-  - pastas de build de apps/libs
+  - node_modules, dist, build, .env, .env.*, !.env.example
+  - pastas de build de projetos
   - arquivos temporários de IDEs (VSCode, .idea, etc)
   - arquivos de sistema (Thumbs.db, .DS_Store)
   - arquivos de log, coverage, arquivos de teste temporários
   - arquivos binários e temporários do Windows/Mac
 - Nunca versionar arquivos de ambiente sensíveis (.env, local.env, etc)
-- Sempre revisar o `.gitignore` ao adicionar novas ferramentas ou estruturas ao monorepo. 
+- Sempre revisar o `.gitignore` ao adicionar novas ferramentas ou estruturas.
 
 ## 📑 Atualização de Documentação
 
-- Sempre atualizar o PROJECT_STATUS.md e demais documentos relevantes (README.md, SETUP.md, SCOPE.md, etc) antes de realizar o push para o repositório remoto. 
+- Sempre atualizar o PROJECT_STATUS.md e demais documentos relevantes (README.md, SETUP.md, SCOPE.md, etc) antes de realizar o push para o repositório remoto.
 
 ## 🚦 Validação antes de Commit
 
 - Sempre rodar a aplicação (ou testes mínimos) para validar se está funcionando antes de realizar commits.
 - A validação deve ser feita APENAS antes do commit, não antes de git add ou outras operações.
-- Se a aplicação não estiver funcionando, não realizar o commit até que o problema seja resolvido. 
+- Se a aplicação não estiver funcionando, não realizar o commit até que o problema seja resolvido.
