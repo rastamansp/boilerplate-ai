@@ -1,14 +1,14 @@
-# Project Status - Monorepo Nx (React + NestJS)
+# Project Status - React + NestJS
 
 ## 📊 Status Geral do Projeto
 
-**Data de Início:** [A definir]
-**Versão Atual:** 0.1.0
+**Data de Início:** 2025-01-27
+**Versão Atual:** 0.2.0
 **Status:** 🟡 Em Desenvolvimento
 
 ### Progresso por Fase
 
-- [ ] **Fase 1:** Configuração Inicial do Monorepo (0%)
+- [x] **Fase 1:** Configuração Inicial dos Projetos (100%)
 - [ ] **Fase 2:** Backend NestJS - Sistema de Autenticação (0%)
 - [ ] **Fase 3:** Frontend React - Interface de Autenticação (0%)
 - [ ] **Fase 4:** Biblioteca Compartilhada (0%)
@@ -23,58 +23,51 @@
 ### Commit: [novo hash]
 
 **Data:** 2025-01-27
-**Tipo:** feat
-**Descrição:** feat(frontend): criação e validação do frontend React com Vite + TypeScript no monorepo
+**Tipo:** refactor
+**Descrição:** refactor(project): migrate from Nx monorepo to independent projects
 
 #### Alterações Realizadas
 
-- [x] Geração da aplicação React usando Nx e Vite
-- [x] Estrutura criada em apps/frontend
-- [x] Validação da aplicação rodando em <http://localhost:4200/>
+- [x] Removido Nx e todas suas dependências
+- [x] Criado backend NestJS independente em `/backend`
+- [x] Criado frontend React + Vite independente em `/frontend`
+- [x] Configurado ESLint e Prettier em ambos os projetos
+- [x] Atualizado README.md e SETUP.md para nova estrutura
+- [x] Mantido arquivos de configuração de ambiente
 
 #### Arquivos Modificados
 
-- [x] apps/frontend/ - Estrutura completa do frontend React
-- [x] nx.json, package.json, tsconfig.json - Atualizações automáticas Nx
+- [x] Removidos: nx.json, tsconfig.base.json, apps/, apps-e2e/, .nx/
+- [x] Criados: backend/, frontend/ com projetos independentes
+- [x] Atualizados: README.md, SETUP.md, PROJECT_STATUS.md
+- [x] Configurados: ESLint e Prettier em ambos os projetos
 
 #### Próximos Passos
 
-- [ ] 3.1.2 Configurar Material-UI
-- [ ] 3.1.3 Configurar React Router
-- [ ] 3.1.4 Configurar Axios para requisições HTTP
-- [ ] 2.1.2 Configurar TypeORM com MongoDB
+- [ ] 2.1.1 Configurar TypeORM com MongoDB no backend
+- [ ] 2.1.2 Configurar nodemailer para envio de emails
+- [ ] 2.1.3 Configurar rate limiting
+- [ ] 3.1.1 Configurar Material-UI no frontend
+- [ ] 3.1.2 Configurar React Router
+- [ ] 3.1.3 Configurar Axios para requisições HTTP
 
 ---
 
 ## 📋 Checklist de Implementação
 
-### Fase 1: Configuração Inicial do Monorepo
+### Fase 1: Configuração Inicial dos Projetos ✅
 
-- [x] 1.1 Inicializar workspace Nx **[Complexidade: Baixa]**
-- [x] 1.2 Configurar estrutura de pastas (apps/frontend, apps/backend, libs/shared) **[Complexidade: Baixa]**
-- [x] 1.3 Configurar dependências compartilhadas **[Complexidade: Média]**
-  - [x] 1.3.1 Instalar dependências base do Nx **[Complexidade: Baixa]**
-  - [x] 1.3.2 Configurar TypeScript compartilhado **[Complexidade: Baixa]**
-  - [x] 1.3.3 Configurar ESLint compartilhado **[Complexidade: Média]**
-  - [x] 1.3.4 Configurar Prettier compartilhado **[Complexidade: Baixa]**
-- [x] 1.4 Configurar scripts de desenvolvimento **[Complexidade: Média]**
-  - [x] 1.4.1 Configurar script de desenvolvimento simultâneo **[Complexidade: Média]**
-  - [x] 1.4.2 Configurar script de build **[Complexidade: Média]**
-  - [x] 1.4.3 Configurar script de testes **[Complexidade: Média]**
-  - [x] 1.4.4 Configurar script de linting **[Complexidade: Baixa]**
-- [x] 1.5 Configurar arquivos .env para dev/test/prod **[Complexidade: Baixa]**
+- [x] 1.1 Remover Nx e dependências **[Complexidade: Baixa]**
+- [x] 1.2 Criar backend NestJS independente **[Complexidade: Baixa]**
+- [x] 1.3 Criar frontend React + Vite independente **[Complexidade: Baixa]**
+- [x] 1.4 Configurar ESLint e Prettier **[Complexidade: Média]**
+- [x] 1.5 Atualizar documentação **[Complexidade: Baixa]**
 
 ### Fase 2: Backend NestJS (Sistema de Autenticação por Código)
 
 #### 2.1 Configuração Base
 
 - [x] 2.1.1 Criar aplicação NestJS com TypeScript
-
-### Fase 2: Backend NestJS (Sistema de Autenticação por Código)
-
-#### 2.1 Configuração Base
-
-- [ ] 2.1.1 Criar aplicação NestJS com TypeScript
 - [ ] 2.1.2 Configurar TypeORM com MongoDB
 - [ ] 2.1.3 Configurar nodemailer para envio de emails
 - [ ] 2.1.4 Configurar rate limiting
@@ -185,7 +178,7 @@
 
 ### Fase 6: Documentação e Finalização
 
-- [ ] 6.1 Criar README com instruções de setup
+- [x] 6.1 Criar README com instruções de setup
 - [ ] 6.2 Documentar APIs
 - [ ] 6.3 Configurar scripts de build para produção
 - [ ] 6.4 Preparar estrutura para CI/CD (scripts básicos)
@@ -207,7 +200,7 @@
 - **Use Cases:** 0/5 (0%)
 - **Controllers:** 0/1 (0%)
 - **Middlewares:** 0/4 (0%)
-- **Configuração:** 0/4 (0%)
+- **Configuração:** 1/4 (25%)
 
 ### Frontend
 
@@ -223,21 +216,21 @@
 
 ### Configuração
 
-- **Monorepo:** 2/5 (40%)
-- **Dependências:** 0/8 (0%)
-- **Scripts:** 0/4 (0%)
+- **Projetos Independentes:** 2/2 (100%)
+- **Dependências:** 2/8 (25%)
+- **Scripts:** 2/4 (50%)
 
 ### Testes e Documentação
 
 - **Testes:** 0/15 (0%)
-- **Documentação:** 0/7 (0%)
+- **Documentação:** 2/7 (29%)
 - **Docker:** 0/12 (0%)
 
 ---
 
 ## 📊 Resumo de Complexidade por Fase
 
-- **Fase 1**: 3 Baixa, 2 Média
+- **Fase 1**: 3 Baixa, 2 Média ✅
 - **Fase 2**: 8 Baixa, 8 Média, 6 Alta
 - **Fase 3**: 4 Baixa, 8 Média, 5 Alta
 - **Fase 4**: 3 Baixa, 2 Média
@@ -250,53 +243,49 @@
 
 ---
 
-## 🐛 Problemas Conhecidos
+## 🔄 Decisões Técnicas
 
-### Backend
+### Migração do Nx para Projetos Independentes
 
-- [ ] [Lista de problemas]
+**Data:** 2025-01-27
+**Motivo:** Simplificar a estrutura do projeto e reduzir complexidade
+**Impacto:**
 
-### Frontend
+- ✅ Facilita onboarding de novos devs
+- ✅ Reduz overhead de configuração
+- ✅ Permite deploys independentes
+- ✅ Simplifica debugging e troubleshooting
 
-- [ ] [Lista de problemas]
+**Estrutura Anterior:**
 
-### Infraestrutura
+```
+apps/
+├── frontend/
+└── backend/
+```
 
-- [ ] [Lista de problemas]
+**Estrutura Atual:**
+
+```
+backend/
+frontend/
+```
+
+---
+
+## 🚀 Próximos Passos Imediatos
+
+1. **Configurar TypeORM no backend** - Conectar com MongoDB
+2. **Implementar entidades User e LoginCode** - Base do sistema de autenticação
+3. **Configurar Material-UI no frontend** - Interface de usuário
+4. **Implementar AuthContext** - Gerenciamento de estado de autenticação
+5. **Criar páginas básicas** - Register, Login, Verify Code
 
 ---
 
 ## 📝 Notas de Desenvolvimento
 
-### Decisões Técnicas
-
-- [ ] [Decisões importantes tomadas]
-
-### Aprendizados
-
-- [ ] [Lições aprendidas durante o desenvolvimento]
-
-### Melhorias Futuras
-
-- [ ] [Ideias para melhorias]
-
----
-
-## 🔗 Links Úteis
-
-- **Repositório:** [Link do repositório]
-- **Documentação:** [Link da documentação]
-- **Deploy:** [Link do deploy]
-- **API Docs:** [Link da documentação da API]
-
----
-
-## 📞 Contato
-
-**Desenvolvedor:** [Nome]
-**Email:** [Email]
-**Data de Última Atualização:** [Data]
-
----
-
-_Este arquivo será atualizado a cada commit significativo do projeto._
+- **ESLint e Prettier** configurados em ambos os projetos
+- **Documentação** atualizada para refletir nova estrutura
+- **Scripts** de desenvolvimento funcionais
+- **Estrutura** limpa e pronta para desenvolvimento

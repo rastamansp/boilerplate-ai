@@ -1,4 +1,4 @@
-# 🚀 Setup do Projeto - Monorepo Nx (React + NestJS)
+# �� Setup do Projeto - React + NestJS
 
 ## 📋 Pré-requisitos
 
@@ -9,11 +9,10 @@
 - **Git** 2.40.0+ ([Download](https://git-scm.com/))
 - **MongoDB** 7.0+ ([Download](https://www.mongodb.com/try/download/community))
 - **Redis** 7.0+ (Opcional - para rate limiting avançado)
-- **Nx CLI** 18.0.0+ (será instalado globalmente)
 
 ### Verificação de Instalação
 
-````bash
+```bash
 # Verificar Node.js
 node --version  # Deve ser 20.17.0+
 
@@ -28,16 +27,7 @@ mongod --version # Deve ser 7.0+
 
 # Verificar Redis (opcional)
 redis-server --version # Deve ser 7.0+
-
-### Verificação Automática
-
-```bash
-# Executar verificação automática de versões
-npm run check-versions
-
-# Ou executar setup completo
-npm run setup
-````
+```
 
 ## 🔧 Configuração Inicial
 
@@ -65,14 +55,16 @@ cp env.example .env
 ### 3. Instalação de Dependências
 
 ```bash
-# Instalar dependências base
+# Instalar dependências do backend
+cd backend
 npm install
 
-# Verificar instalação
-npm list
+# Instalar dependências do frontend
+cd ../frontend
+npm install
 
-# Verificar versões das tecnologias
-npm run check-versions
+# Voltar para a raiz
+cd ..
 ```
 
 ## 🔐 Configurações de Ambiente
@@ -123,46 +115,39 @@ JWT_REFRESH_SECRET=seu-refresh-secret-gerado
 
 ## 🚀 Scripts de Desenvolvimento
 
-### Comandos Principais
+### Backend
 
 ```bash
-# Desenvolvimento
-npm run dev          # Executa frontend e backend
-npm run dev:frontend # Apenas frontend
-npm run dev:backend  # Apenas backend
+cd backend
 
-# Build
+# Desenvolvimento
+npm run start:dev    # Executa em modo desenvolvimento
+npm run start        # Executa em modo produção
 npm run build        # Build de produção
-npm run build:frontend
-npm run build:backend
 
 # Testes
-npm run test         # Executa todos os testes
-npm run test:frontend
-npm run test:backend
+npm run test         # Executa testes unitários
+npm run test:e2e     # Executa testes e2e
+npm run test:cov     # Executa testes com coverage
 
 # Linting
 npm run lint         # Verifica código
 npm run lint:fix     # Corrige problemas
 ```
 
-### Comandos Nx
+### Frontend
 
 ```bash
-# Listar projetos
-npx nx show projects
+cd frontend
 
-# Executar projeto específico
-npx nx serve frontend
-npx nx serve backend
+# Desenvolvimento
+npm run dev          # Executa servidor de desenvolvimento
+npm run build        # Build de produção
+npm run preview      # Preview do build
 
-# Build de projeto específico
-npx nx build frontend
-npx nx build backend
-
-# Testes de projeto específico
-npx nx test frontend
-npx nx test backend
+# Linting
+npm run lint         # Verifica código
+npm run lint:fix     # Corrige problemas
 ```
 
 ## 🧪 Testes de Configuração
@@ -171,6 +156,7 @@ npx nx test backend
 
 ```bash
 # Testar conexão
+cd backend
 npm run test:db
 
 # Verificar se MongoDB está rodando
@@ -181,6 +167,7 @@ mongosh --eval "db.runCommand('ping')"
 
 ```bash
 # Testar envio de email
+cd backend
 npm run test:email
 
 # Verificar configurações SMTP
@@ -191,6 +178,7 @@ npm run test:smtp
 
 ```bash
 # Testar rate limiting
+cd backend
 npm run test:rate-limit
 
 # Verificar Redis (se configurado)
@@ -246,132 +234,106 @@ sudo journalctl -u mongod
 
 ```bash
 # Verificar configurações SMTP
+cd backend
 npm run test:smtp
-
-# Verificar se Gmail está configurado corretamente
-# - Verificação em 2 etapas ativada
-# - Senha de app gerada
-# - SMTP habilitado
 ```
 
-#### Porta já em uso
+#### Frontend não carrega
 
 ```bash
-# Verificar portas em uso
-netstat -tulpn | grep :3000
-netstat -tulpn | grep :3001
+# Verificar se o servidor está rodando
+cd frontend
+npm run dev
 
-# Matar processo na porta
-sudo kill -9 $(lsof -t -i:3000)
-sudo kill -9 $(lsof -t -i:3001)
+# Verificar porta
+lsof -i :5173
 ```
 
-#### Dependências não instalam
+#### Backend não inicia
 
 ```bash
-# Limpar cache
-npm cache clean --force
-
-# Remover node_modules
-rm -rf node_modules package-lock.json
-
-# Reinstalar
+# Verificar dependências
+cd backend
 npm install
+
+# Verificar configurações
+npm run start:dev
 ```
 
-## 📊 Monitoramento
+## 📁 Estrutura do Projeto
 
-### Logs da Aplicação
+```
+exemplo/
+├── 📁 backend/              # NestJS + TypeORM + MongoDB
+│   ├── src/
+│   │   ├── domain/          # Entidades, Value Objects, Interfaces
+│   │   ├── application/     # Use Cases, DTOs
+│   │   ├── infrastructure/  # Implementações concretas
+│   │   └── presentation/    # Controllers, Middlewares
+│   └── package.json
+├── 📁 frontend/             # React + Vite + Material-UI
+│   ├── src/
+│   │   ├── domain/          # Entidades, Interfaces
+│   │   ├── application/     # Use Cases, Services
+│   │   ├── infrastructure/  # API, Storage
+│   │   └── presentation/    # Components, Pages
+│   └── package.json
+├── 📁 libs/                 # Tipos e utilitários compartilhados (opcional)
+├── 📄 .cursorrules          # Regras do projeto
+├── 📄 SCOPE.md             # Escopo detalhado
+├── 📄 PROJECT_STATUS.md    # Status do projeto
+├── 📄 package.json
+└── 📄 README.md
+```
+
+## 🚀 Primeiros Passos
+
+### 1. Iniciar Backend
 
 ```bash
-# Ver logs do backend
-npm run logs:backend
-
-# Ver logs do frontend
-npm run logs:frontend
-
-# Ver logs completos
-npm run logs
+cd backend
+npm run start:dev
 ```
 
-### Métricas de Performance
+### 2. Iniciar Frontend
 
 ```bash
-# Verificar uso de memória
-npm run monitor:memory
-
-# Verificar uso de CPU
-npm run monitor:cpu
-
-# Verificar conexões de banco
-npm run monitor:db
+cd frontend
+npm run dev
 ```
 
-## 🔄 Atualizações
+### 3. Acessar Aplicação
 
-### Atualizar Dependências
+- **Frontend**: <http://localhost:5173>
+- **Backend**: <http://localhost:3001>
+
+### 4. Verificar Funcionamento
 
 ```bash
-# Verificar dependências desatualizadas
-npm outdated
+# Testar backend
+curl http://localhost:3001
 
-# Atualizar dependências
-npm update
-
-# Atualizar dependências de desenvolvimento
-npm update --save-dev
+# Testar frontend
+curl http://localhost:5173
 ```
 
-### Atualizar Nx
+## 📚 Documentação Adicional
 
-```bash
-# Atualizar Nx
-npm install -g @nrwl/cli@latest
+- [README.md](./README.md) - Documentação principal
+- [SCOPE.md](./SCOPE.md) - Escopo detalhado do projeto
+- [PROJECT_STATUS.md](./PROJECT_STATUS.md) - Status do desenvolvimento
+- [.cursorrules](./.cursorrules) - Regras do projeto
 
-# Atualizar workspace
-npx nx migrate latest
-```
+## 🤝 Suporte
 
-## 📝 Documentação
+Se encontrar problemas durante o setup:
 
-### Arquivos Importantes
-
-- **README.md** - Documentação principal
-- **SCOPE.md** - Escopo do projeto
-- **PROJECT_STATUS.md** - Status atual
-- **.cursorrules** - Regras do projeto
-- **ENV_SETUP.md** - Configuração de ambiente
-
-### Links Úteis
-
-- [Nx Documentation](https://nx.dev/)
-- [NestJS Documentation](https://docs.nestjs.com/)
-- [React Documentation](https://react.dev/)
-- [Material-UI Documentation](https://mui.com/)
-
-## ⚠️ Importante
-
-1. **Nunca commite o arquivo `.env`**
-2. **Sempre use `env.example` como template**
-3. **Gere secrets únicos para cada ambiente**
-4. **Configure email real para funcionamento completo**
-5. **Teste todas as conexões antes de prosseguir**
-
-## 🆘 Suporte
-
-### Problemas Técnicos
-
-- Verificar logs da aplicação
-- Consultar documentação oficial
-- Verificar configurações de ambiente
-- Testar conexões individualmente
-
-### Contato
-
-- **Issues:** [GitHub Issues](https://github.com/rastamansp/boilerplate-ai/issues)
-- **Documentação:** [Wiki](https://github.com/rastamansp/boilerplate-ai/wiki)
+1. Verifique se todas as dependências estão instaladas
+2. Confirme se as variáveis de ambiente estão configuradas
+3. Verifique os logs de erro
+4. Consulte a documentação do projeto
+5. Abra uma issue no repositório
 
 ---
 
-**Última atualização:** [Data atual]
-**Versão:** 1.0.0
+**Desenvolvido com ❤️ seguindo as melhores práticas de desenvolvimento**

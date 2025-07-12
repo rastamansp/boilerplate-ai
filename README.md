@@ -1,10 +1,10 @@
-# 🚀 Monorepo Nx - React + NestJS
+# 🚀 Projeto React + NestJS
 
 > Sistema de autenticação por código com arquitetura limpa e design patterns SOLID
 
 ## 📋 Sobre o Projeto
 
-Este é um boilerplate de monorepo utilizando **Nx** com **React** (frontend) e **NestJS** (backend), implementando um sistema de autenticação seguro baseado em códigos únicos enviados por email.
+Este é um projeto de autenticação seguro utilizando **React** (frontend) e **NestJS** (backend), implementando um sistema de autenticação baseado em códigos únicos enviados por email.
 
 ### 🎯 Objetivos
 
@@ -18,12 +18,9 @@ Este é um boilerplate de monorepo utilizando **Nx** com **React** (frontend) e 
 ### Clean Architecture + DDD
 
 ```
-📁 apps/
-├── 🎨 frontend/          # React + Vite + Material-UI
-└── 🔧 backend/           # NestJS + TypeORM + MongoDB
-
-📁 libs/
-└── 🔗 shared/            # Tipos e utilitários compartilhados
+📁 backend/              # NestJS + TypeORM + MongoDB
+📁 frontend/             # React + Vite + Material-UI
+📁 libs/                 # Tipos e utilitários compartilhados (opcional)
 ```
 
 ### Fluxo de Autenticação
@@ -67,38 +64,28 @@ Este é um boilerplate de monorepo utilizando **Nx** com **React** (frontend) e 
 - **State Management**: React Context
 - **Language**: TypeScript
 
-### Monorepo
-
-- **Workspace**: Nx
-- **Package Manager**: npm/yarn
-- **Language**: TypeScript
-
 ## 📁 Estrutura do Projeto
 
 ```
 exemplo/
-├── 📁 apps/
-│   ├── 🎨 frontend/          # React + Vite + Material-UI
-│   │   ├── src/
-│   │   │   ├── domain/       # Entidades, Interfaces
-│   │   │   ├── application/  # Use Cases, Services
-│   │   │   ├── infrastructure/ # API, Storage
-│   │   │   └── presentation/ # Components, Pages
-│   │   └── package.json
-│   └── 🔧 backend/           # NestJS + TypeORM + MongoDB
-│       ├── src/
-│       │   ├── domain/       # Entidades, Value Objects, Interfaces
-│       │   ├── application/  # Use Cases, DTOs
-│       │   ├── infrastructure/ # Implementações concretas
-│       │   └── presentation/ # Controllers, Middlewares
-│       └── package.json
-├── 📁 libs/
-│   └── 🔗 shared/            # Tipos e utilitários compartilhados
-├── 📁 tools/                 # Scripts e configurações
-├── 📄 .cursorrules           # Regras do projeto
-├── 📄 SCOPE.md              # Escopo detalhado
-├── 📄 PROJECT_STATUS.md     # Status do projeto
-├── 📄 nx.json
+├── 📁 backend/              # NestJS + TypeORM + MongoDB
+│   ├── src/
+│   │   ├── domain/          # Entidades, Value Objects, Interfaces
+│   │   ├── application/     # Use Cases, DTOs
+│   │   ├── infrastructure/  # Implementações concretas
+│   │   └── presentation/    # Controllers, Middlewares
+│   └── package.json
+├── 📁 frontend/             # React + Vite + Material-UI
+│   ├── src/
+│   │   ├── domain/          # Entidades, Interfaces
+│   │   ├── application/     # Use Cases, Services
+│   │   ├── infrastructure/  # API, Storage
+│   │   └── presentation/    # Components, Pages
+│   └── package.json
+├── 📁 libs/                 # Tipos e utilitários compartilhados (opcional)
+├── 📄 .cursorrules          # Regras do projeto
+├── 📄 SCOPE.md             # Escopo detalhado
+├── 📄 PROJECT_STATUS.md    # Status do projeto
 ├── 📄 package.json
 └── 📄 README.md
 ```
@@ -162,34 +149,51 @@ exemplo/
 git clone [URL_DO_REPOSITORIO]
 cd exemplo
 
-# 2. Instale as dependências
+# 2. Instale as dependências do backend
+cd backend
 npm install
 
-# 3. Configure as variáveis de ambiente
+# 3. Instale as dependências do frontend
+cd ../frontend
+npm install
+
+# 4. Configure as variáveis de ambiente
+cd ..
 cp .env.example .env
 # Edite o arquivo .env com suas configurações
-
-# 4. Execute o projeto
-npm run dev
 ```
 
 ### Scripts Disponíveis
 
-```bash
-# Desenvolvimento
-npm run dev          # Executa frontend e backend
-npm run dev:frontend # Apenas frontend
-npm run dev:backend  # Apenas backend
+#### Backend
 
-# Build
+```bash
+cd backend
+
+# Desenvolvimento
+npm run start:dev    # Executa em modo desenvolvimento
+npm run start        # Executa em modo produção
 npm run build        # Build de produção
-npm run build:frontend
-npm run build:backend
 
 # Testes
-npm run test         # Executa todos os testes
-npm run test:frontend
-npm run test:backend
+npm run test         # Executa testes unitários
+npm run test:e2e     # Executa testes e2e
+npm run test:cov     # Executa testes com coverage
+
+# Linting
+npm run lint         # Verifica código
+npm run lint:fix     # Corrige problemas de linting
+```
+
+#### Frontend
+
+```bash
+cd frontend
+
+# Desenvolvimento
+npm run dev          # Executa servidor de desenvolvimento
+npm run build        # Build de produção
+npm run preview      # Preview do build
 
 # Linting
 npm run lint         # Verifica código
@@ -241,128 +245,44 @@ VITE_APP_NAME=Auth App
 ### Executar Testes
 
 ```bash
-# Todos os testes
+# Backend
+cd backend
 npm run test
 
-# Testes específicos
-npm run test:unit
-npm run test:integration
-npm run test:e2e
-
-# Cobertura
-npm run test:coverage
+# Frontend
+cd frontend
+npm run test
 ```
 
-## 📚 Documentação
+## 🔧 Desenvolvimento
 
-### Arquivos de Documentação
+### Padrões de Código
 
-- [`.cursorrules`](./.cursorrules) - Regras do projeto
-- [`SCOPE.md`](./SCOPE.md) - Escopo detalhado
-- [`PROJECT_STATUS.md`](./PROJECT_STATUS.md) - Status do projeto
+- **ESLint**: Configurado para TypeScript
+- **Prettier**: Formatação automática de código
+- **TypeScript**: Tipagem estática
+- **Conventional Commits**: Padrão de commits
 
-### Design Patterns Utilizados
-
-- ✅ **SOLID Principles**
-- ✅ **Clean Architecture**
-- ✅ **Domain Driven Design (DDD)**
-- ✅ **Dependency Injection**
-- ✅ **Repository Pattern**
-- ✅ **Use Case Pattern**
-
-## 🔄 Versionamento
-
-### Conventional Commits
+### Estrutura de Commits
 
 ```bash
 feat(auth): add user registration endpoint
 fix(api): resolve CORS issue
-docs(readme): update installation guide
-style(ui): improve button styling
-refactor(backend): extract email service
-test(auth): add login flow tests
-chore(deps): update dependencies
+docs(readme): update installation instructions
 ```
-
-### Branches
-
-- `main` - Código em produção
-- `develop` - Código em desenvolvimento
-- `feature/` - Novas funcionalidades
-- `fix/` - Correções
-- `hotfix/` - Correções urgentes
-
-## 🤝 Contribuindo
-
-### Padrões de Código
-
-1. Seguir as regras do `.cursorrules`
-2. Usar Conventional Commits
-3. Implementar testes para novas funcionalidades
-4. Documentar APIs e componentes
-5. Manter arquitetura limpa
-
-### Processo de Contribuição
-
-1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'feat: add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
 
 ## 📊 Status do Projeto
 
-- **Versão**: 0.1.0
-- **Status**: 🟡 Em Desenvolvimento
-- **Última Atualização**: [Data]
+Para acompanhar o progresso do desenvolvimento, consulte o arquivo [PROJECT_STATUS.md](./PROJECT_STATUS.md).
 
-### Progresso
+## 🤝 Contribuição
 
-- [ ] **Fase 1:** Configuração Inicial do Monorepo (0%)
-- [ ] **Fase 2:** Backend NestJS - Sistema de Autenticação (0%)
-- [ ] **Fase 3:** Frontend React - Interface de Autenticação (0%)
-- [ ] **Fase 4:** Biblioteca Compartilhada (0%)
-- [ ] **Fase 5:** Integração e Testes (0%)
-- [ ] **Fase 6:** Documentação e Finalização (0%)
-- [ ] **Fase 7:** Docker (Opcional) (0%)
-
-## 🐛 Problemas Conhecidos
-
-- [ ] [Lista de problemas conhecidos]
-
-## 🚀 Roadmap
-
-### Versão 1.0.0
-
-- [x] Sistema de autenticação por código
-- [x] Interface de usuário responsiva
-- [x] API RESTful completa
-- [x] Documentação básica
-
-### Versão 1.1.0
-
-- [ ] Testes automatizados
-- [ ] CI/CD pipeline
-- [ ] Docker containerization
-- [ ] Monitoramento e logs
-
-### Versão 2.0.0
-
-- [ ] Módulos adicionais
-- [ ] Dashboard administrativo
-- [ ] Relatórios e analytics
-- [ ] Integração com serviços externos
-
-## 📞 Suporte
-
-- **Issues**: [GitHub Issues](link-para-issues)
-- **Documentação**: [Wiki](link-para-wiki)
-- **Email**: [seu-email@exemplo.com]
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
 
 ## 📄 Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
-**Desenvolvido com ❤️ seguindo as melhores práticas de desenvolvimento**
