@@ -1,0 +1,18 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "ES2022",
+    "module": "ESNext",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["*"],
+      "@backend/*": ["apps/backend/src/*"],
+      "@frontend/*": ["apps/frontend/src/*"],
+      "@shared/*": ["libs/shared/src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist", "build", ".nx"]
+}
