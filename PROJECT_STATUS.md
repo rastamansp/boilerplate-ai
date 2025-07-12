@@ -20,7 +20,33 @@
 
 ## 🔄 Histórico de Commits e Implementações
 
-### Commit: [novo hash]
+### Commit: 235d4a3
+
+**Data:** 2025-01-27
+**Tipo:** docs
+**Descrição:** docs(rules): update .cursorrules to reflect independent projects structure
+
+#### Alterações Realizadas
+
+- [x] Removidas referências ao Nx do .cursorrules
+- [x] Atualizada estrutura de pastas (backend/ e frontend/)
+- [x] Atualizadas regras de Git ignore para projetos independentes
+- [x] Mantidos todos os padrões de código e design patterns
+
+#### Arquivos Modificados
+
+- [x] .cursorrules - Atualizado para refletir nova estrutura
+
+#### Próximos Passos
+
+- [ ] 2.1.2 Configurar TypeORM com MongoDB no backend
+- [ ] 2.1.3 Configurar nodemailer para envio de emails
+- [ ] 2.1.4 Configurar rate limiting
+- [ ] 3.1.2 Configurar Material-UI no frontend
+- [ ] 3.1.3 Configurar React Router
+- [ ] 3.1.4 Configurar Axios para requisições HTTP
+
+### Commit: 37551d1
 
 **Data:** 2025-01-27
 **Tipo:** refactor
@@ -41,15 +67,6 @@
 - [x] Criados: backend/, frontend/ com projetos independentes
 - [x] Atualizados: README.md, SETUP.md, PROJECT_STATUS.md
 - [x] Configurados: ESLint e Prettier em ambos os projetos
-
-#### Próximos Passos
-
-- [ ] 2.1.1 Configurar TypeORM com MongoDB no backend
-- [ ] 2.1.2 Configurar nodemailer para envio de emails
-- [ ] 2.1.3 Configurar rate limiting
-- [ ] 3.1.1 Configurar Material-UI no frontend
-- [ ] 3.1.2 Configurar React Router
-- [ ] 3.1.3 Configurar Axios para requisições HTTP
 
 ---
 
@@ -223,7 +240,7 @@
 ### Testes e Documentação
 
 - **Testes:** 0/15 (0%)
-- **Documentação:** 2/7 (29%)
+- **Documentação:** 3/7 (43%)
 - **Docker:** 0/12 (0%)
 
 ---
@@ -289,3 +306,15 @@ frontend/
 - **Documentação** atualizada para refletir nova estrutura
 - **Scripts** de desenvolvimento funcionais
 - **Estrutura** limpa e pronta para desenvolvimento
+- **Push realizado** para repositório remoto
+- **Projetos validados** e funcionando corretamente
+
+---
+
+## 🎯 Status do Repositório
+
+- **Último push:** 2025-01-27
+- **Commits realizados:** 2 commits de migração
+- **Branch:** main
+- **Status:** Sincronizado com repositório remoto
+- **Próximo passo:** Desenvolvimento das funcionalidades de autenticação
